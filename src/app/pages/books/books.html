@@ -1,0 +1,38 @@
+<div class="books-container">
+  <h2>Your Books</h2>
+
+  <form class="book-form" (ngSubmit)="saveBook()">
+    <input [(ngModel)]="form.title" name="title" placeholder="Title" required>
+    <input [(ngModel)]="form.author" name="author" placeholder="Author" required>
+    <input [(ngModel)]="form.quote" name="quote" placeholder="Favorite Quote" required>
+
+    <button type="submit">
+      {{ editing ? 'Uppdatera' : 'Lägg till' }}
+    </button>
+
+    <button *ngIf="editing" type="button" class="cancel-btn" (click)="cancelEdit()">
+      Avbryt
+    </button>
+  </form>
+
+  <!-- FELMEDDELANDE – visas bara när man klickat på Add/Update -->
+  <div class="error" *ngIf="showError">
+    Alla fält måste fyllas i innan du kan lägga till en bok.
+  </div>
+
+  <ul class="book-list">
+    <li class="book-card" *ngFor="let book of books">
+      <div class="book-info">
+        <h3>{{ book.title }}</h3>
+        <p class="author">{{ book.author }}</p>
+        <p class="quote">{{ book.quote }}</p>
+      </div>
+
+      <div class="actions">
+        <button (click)="startEdit(book)">✏️</button>
+        <button class="delete-btn" (click)="deleteBook(book.id)">🗑️</button>
+
+      </div>
+    </li>
+  </ul>
+</div>

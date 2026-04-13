@@ -1,0 +1,34 @@
+<div class="books-container">
+  <h2>Mina citat</h2>
+
+  <form class="book-form" (ngSubmit)="saveQuote()">
+    <input [(ngModel)]="form.text" name="text" placeholder="Citat" required>
+    <input [(ngModel)]="form.author" name="author" placeholder="Författare" required>
+
+    <button type="submit">
+      {{ editing ? 'Uppdatera' : 'Lägg till' }}
+    </button>
+
+    <button *ngIf="editing" type="button" class="cancel-btn" (click)="cancelEdit()">
+      Avbryt
+    </button>
+  </form>
+
+  <div class="error" *ngIf="showError">
+    Alla fält måste fyllas i innan du kan lägga till ett citat.
+  </div>
+
+  <ul class="book-list">
+    <li class="book-card" *ngFor="let q of quotes">
+      <div class="book-info">
+        <h3>"{{ q.text }}"</h3>
+        <p class="author">– {{ q.author }}</p>
+      </div>
+
+      <div class="actions">
+        <button (click)="startEdit(q)">✏️</button>
+        <button class="delete-btn" (click)="deleteQuote(q.id)">🗑️</button>
+      </div>
+    </li>
+  </ul>
+</div>

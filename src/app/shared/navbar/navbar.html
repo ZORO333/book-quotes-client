@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <a routerLink="/books" class="logo">BookQuotes</a>
+  <link rel="stylesheet" href="navbar.css">
+
+  <div class="links">
+    <button (click)="toggleTheme()">
+      {{ theme.isDark() ? '☀️ Light' : '🌙 Dark' }}
+    </button>
+    <button (click)="logout()" *ngIf="auth.isLoggedIn$ | async">Logout</button>
+    <a routerLink="/login" *ngIf="!(auth.isLoggedIn$ | async)">Login</a>
+    <a routerLink="/register" *ngIf="!(auth.isLoggedIn$ | async)">Register</a>
+    <a routerLink="/books">Böcker</a>
+    <a routerLink="/quotes">Mina citat</a>
+  </div>
+</nav>

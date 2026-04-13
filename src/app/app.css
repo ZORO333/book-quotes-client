@@ -1,0 +1,181 @@
+/* --- GLOBAL RESET --- */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* --- THEME VARIABLES --- */
+:root {
+  --bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --text: #222;
+  --text-light: #666;
+  --primary: #0078ff;
+  --input-border: #ccc;
+  --shadow: rgba(0,0,0,0.08);
+}
+
+.dark {
+  --bg: #d3d3d3; /* light gray background */
+  --card-bg: #1f1f1f;
+  --text: #eaeaea;
+  --text-light: #b5b5b5;
+  --primary: #4da3ff;
+  --input-border: #555;
+  --shadow: rgba(0,0,0,0.5);
+}
+
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+  .navbar .logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .navbar .links a,
+  .navbar .links button {
+    margin-left: 20px;
+    color: var(--text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+    .navbar .links a:hover,
+    .navbar .links button:hover {
+      opacity: 0.7;
+    }
+
+/* --- BOOKS PAGE --- */
+.books-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+  .books-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+/* --- FORM --- */
+.book-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+  .book-form input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--input-border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 15px;
+  }
+
+  .book-form button {
+    padding: 12px 18px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+    .book-form button:hover {
+      background: #005fcc;
+    }
+
+/* --- BOOK LIST --- */
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-card {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 18px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.book-info h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text);
+}
+
+.book-info .author {
+  margin: 4px 0;
+  color: var(--text-light);
+}
+
+.book-info .quote {
+  margin: 0;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* --- DELETE BUTTON --- */
+.delete-btn {
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dark .delete-btn {
+  background: #cc3a3a;
+}
+
+.delete-btn:hover {
+  background: #d93636;
+}
+body {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

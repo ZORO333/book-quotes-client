@@ -1,0 +1,136 @@
+/* --- CENTER LAYOUT --- */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: var(--bg);
+}
+
+/* --- CARD --- */
+.auth-card {
+  width: 380px;
+  padding: 40px 35px;
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px var(--shadow);
+  text-align: center;
+  color: var(--text);
+  animation: popIn 0.35s ease-out;
+}
+
+  /* --- TITLES --- */
+  .auth-card h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+.subtitle {
+  margin-top: 6px;
+  margin-bottom: 25px;
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+/* --- INPUT GROUP --- */
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+  .input-group input {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 15px;
+    background: transparent;
+    color: var(--text);
+  }
+
+  /* Floating label */
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    pointer-events: none;
+    transition: 0.2s;
+  }
+
+  /* Floating animation */
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: 4px;
+    font-size: 12px;
+    color: var(--primary);
+  }
+
+/* --- BUTTON --- */
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* --- SWITCH TEXT --- */
+.switch {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+  .switch a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+    .switch a:hover {
+      text-decoration: underline;
+    }
+
+/* --- POP-IN ANIMATION --- */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+    .auth-card h2 {
+      font-size: 24px;
+    }
+
+  .input-group input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .auth-btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
