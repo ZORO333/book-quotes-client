@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { QuotesService } from '../../services/quotes';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-quotes',
@@ -22,7 +23,10 @@ export class Quotes {
 
   showError = false;
 
-  constructor(private quotesService: QuotesService) { }
+  constructor(
+    private quotesService: QuotesService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.loadQuotes();
@@ -31,6 +35,7 @@ export class Quotes {
   loadQuotes() {
     this.quotesService.getQuotes().subscribe((res: any[]) => {
       this.quotes = res;
+      this.cdr.detectChanges(); // 👈 Tvingar Angular att uppdatera DOM direkt
     });
   }
 
@@ -51,18 +56,15 @@ export class Quotes {
     if (this.editing) {
       this.quotesService.updateQuote(this.editId!, payload).subscribe(() => {
         this.resetForm();
-        this.loadQuotes();
+        this.loadQuotes(); // 👈 Uppdaterar listan direkt
       });
     } else {
       this.quotesService.createQuote(payload).subscribe(() => {
         this.resetForm();
-        this.loadQuotes();
+        this.loadQuotes(); // 👈 Uppdaterar listan direkt
       });
     }
   }
-
-
-
 
   startEdit(q: any) {
     this.editing = true;
@@ -72,7 +74,7 @@ export class Quotes {
 
   deleteQuote(id: number) {
     this.quotesService.deleteQuote(id).subscribe(() => {
-      this.loadQuotes();
+      this.loadQuotes(); // 👈 Uppdaterar listan direkt
     });
   }
 
@@ -82,11 +84,11 @@ export class Quotes {
     this.form = { text: '', author: '' };
     this.showError = false;
   }
+
   cancelEdit() {
     this.editing = false;
     this.editId = null;
     this.form = { text: '', author: '' };
     this.showError = false;
   }
-
 }

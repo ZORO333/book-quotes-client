@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class QuotesService {
   apiUrl = 'https://bookquotes-api.onrender.com/api/quotes';
+  //apiUrl = 'http://localhost:5075/api/quotes';
 
   constructor(private http: HttpClient) { }
 

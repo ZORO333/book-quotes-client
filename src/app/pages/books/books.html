@@ -15,13 +15,12 @@
     </button>
   </form>
 
-  <!-- FELMEDDELANDE – visas bara när man klickat på Add/Update -->
   <div class="error" *ngIf="showError">
     Alla fält måste fyllas i innan du kan lägga till en bok.
   </div>
 
   <ul class="book-list">
-    <li class="book-card" *ngFor="let book of books">
+    <li class="book-card" *ngFor="let book of books; trackBy: trackById">
       <div class="book-info">
         <h3>{{ book.title }}</h3>
         <p class="author">{{ book.author }}</p>
@@ -29,9 +28,9 @@
       </div>
 
       <div class="actions">
-        <button (click)="startEdit(book)">✏️</button>
-        <button class="delete-btn" (click)="deleteBook(book.id)">🗑️</button>
-
+        <!-- FIX: type="button" så Angular inte stoppar första klicket -->
+        <button type="button" (click)="startEdit(book)">✏️</button>
+        <button type="button" class="delete-btn" (click)="deleteBook(book.id)">🗑️</button>
       </div>
     </li>
   </ul>

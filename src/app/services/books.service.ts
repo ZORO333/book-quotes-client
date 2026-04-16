@@ -5,7 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BooksService {
+
   private apiUrl = 'https://bookquotes-api.onrender.com/api/books';
+  //private apiUrl = 'http://localhost:5075/api/books';
 
   constructor(private http: HttpClient) { }
 

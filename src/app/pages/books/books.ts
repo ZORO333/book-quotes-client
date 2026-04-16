@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BooksService } from '../../services/books.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-books',
@@ -22,7 +23,10 @@ export class Books {
 
   showError = false;
 
-  constructor(private booksService: BooksService) { }
+  constructor(
+    private booksService: BooksService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.loadBooks();
@@ -31,7 +35,12 @@ export class Books {
   loadBooks() {
     this.booksService.getBooks().subscribe((res: any[]) => {
       this.books = res;
+      this.cdr.detectChanges(); // 👈 tvingar DOM att uppdateras direkt
     });
+  }
+
+  trackById(index: number, item: any) {
+    return item.id;
   }
 
   deleteBook(id: number) {
@@ -78,7 +87,7 @@ export class Books {
 
     this.booksService.createBook(this.form).subscribe(() => {
       this.resetForm();
-      this.loadBooks();
+      this.loadBooks(); // hämtar om listan + triggar detectChanges
     });
   }
 
@@ -92,9 +101,10 @@ export class Books {
 
     this.booksService.updateBook(this.editId!, this.form).subscribe(() => {
       this.resetForm();
-      this.loadBooks();
+      this.loadBooks(); // hämtar om listan + triggar detectChanges
     });
   }
+
   cancelEdit() {
     this.editing = false;
     this.editId = null;
